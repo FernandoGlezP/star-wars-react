@@ -1,7 +1,14 @@
-import Characters from "./pages/characters"
+0;
+import { CssBaseline } from "@mui/material";
+import Characters from "./pages/characters";
 
 function App() {
-  return <Characters/>
+  return (
+    <>
+      <CssBaseline />
+      <Characters />
+    </>
+  );
 }
 
-export default App
+export default App;

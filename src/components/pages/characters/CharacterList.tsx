@@ -1,20 +1,31 @@
-import type Character from "../../../interfaces/character"
-import CharacterItem from "./CharacterItem"
+import type Character from "../../../interfaces/character";
 
-interface Props{
-  characters: Character[]
+import Grid from "@mui/material/Unstable_Grid2";
+import CharacterItem from "./CharacterItem";
+
+interface Props {
+  characters: Character[];
 }
 
-function CharacterList(props:Props):JSX.Element{
-  const {characters} = props;
+function CharacterList(props: Props): JSX.Element {
+  const { characters } = props;
 
-  return(
-    <ul>
-      {characters.map( ({name}, index) => {
-        return<CharacterItem key={`${index}${name}`} name={name}/>
+  return (
+    <Grid container spacing={2}>
+      {characters.map(({ name, species, status, image, id }) => {
+        return (
+          <CharacterItem
+            key={id}
+            id={id}
+            image={image}
+            name={name}
+            species={species}
+            status={status}
+          />
+        );
       })}
-    </ul>
-  )
+    </Grid>
+  );
 }
 
-export default CharacterList
+export default CharacterList;

@@ -1,6 +1,10 @@
 import type Character from "../interfaces/character";
 import CharacterList from "../components/pages/characters/CharacterList";
 import { useEffect, useState } from "react";
+import { Container } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 type TURL = string | null;
 
@@ -9,7 +13,7 @@ function Characters() {
   //const fetchUrl = "https://swapi.dev/api/people/";
   const [isLoading, setIsLoading] = useState(true);
   const [fetchUrl, setFetchUrl] = useState<TURL>(
-    "https://swapi.dev/api/people?page=7"
+    "https://rickandmortyapi.com/api/character/"
   );
 
   const [prevUrl, setPrevUrl] = useState<TURL>(null);
@@ -19,10 +23,10 @@ function Characters() {
     if (fetchUrl) {
       setIsLoading(true);
       const response = await fetch(fetchUrl);
-      const { results, previous, next } = await response.json();
+      const { results, info } = await response.json();
       setCharacters(results);
-      setPrevUrl(previous);
-      setNextUrl(next);
+      setPrevUrl(info.prev);
+      setNextUrl(info.next);
       setIsLoading(false);
     }
   };
@@ -40,7 +44,7 @@ function Characters() {
     //     });
     // }
     getCharacters();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchUrl]);
 
   const onPrev = () => {
@@ -56,11 +60,34 @@ function Characters() {
   }
 
   return (
-    <>
+    <Container>
       <CharacterList characters={characters} />
-      {prevUrl ? <button onClick={onPrev}>previous</button> : null}
-      {nextUrl ? <button onClick={onNext}>next</button> : null}
-    </>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="baseline"
+      >
+        {prevUrl ? (
+          <Button onClick={onPrev} variant="outlined">
+            Previous
+          </Button>
+        ) : null}
+        {nextUrl ? (
+          <Button
+            onClick={onNext}
+            variant="outlined"
+            sx={{ marginLeft: "auto" }}
+          >
+            Next
+          </Button>
+        ) : null}
+      </Stack>
+
+      {/* <Grid container>
+          <Grid xs={1}>{prevUrl ? <Button onClick={onPrev} variant="outlined" fullWidth>Previous</Button> : null}</Grid>
+          <Grid xs={1} xsOffset={10}>{nextUrl ? <Button onClick={onNext} variant="outlined" sx={{marginLeft: 'auto'}} fullWidth>Next</Button>: null}</Grid>
+      </Grid> */}
+    </Container>
   );
 }
 
