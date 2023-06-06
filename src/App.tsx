@@ -1,14 +1,15 @@
 0;
 import { CssBaseline } from "@mui/material";
-//import Characters from "./pages/characters";
+import { ThemeProvider } from "@mui/material";
 import Router from "./routes/Router";
+import darkTheme from "./themes/darkTheme";
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Router/>
-    </>
+      <Router />
+    </ThemeProvider>
   );
 }
 

@@ -2,7 +2,6 @@ import type Character from "../interfaces/character";
 import CharacterList from "../components/pages/characters/CharacterList";
 import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
@@ -74,9 +73,9 @@ function Characters() {
         ) : null}
         {nextUrl ? (
           <Button
+            sx={{ margin: "1rem 0 1rem auto"}}
             onClick={onNext}
             variant="outlined"
-            sx={{ marginLeft: "auto" }}
           >
             Next
           </Button>
