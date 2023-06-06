@@ -1,4 +1,5 @@
 import type Character from "../../../interfaces/character";
+import { useNavigate } from 'react-router-dom';
 // import styled from "@emotion/styled";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -12,12 +13,27 @@ import Tooltip from '@mui/material/Tooltip';
 //   width: 100%;
 // `;
 
+type Colors = {
+  Alive: "success" | "error" | "warning" | "default" | "primary",
+  Dead: "success" | "error" | "warning" | "default" | "primary",
+  unknown: "success" | "error" | "warning" | "default" | "primary",
+}
+
+const colors: Colors = {
+  Alive: "success",
+  Dead: "error",
+  unknown: "warning"
+}
+
 function CharacterItem({
   image,
   name,
   species,
   status,
 }: Character): JSX.Element {
+  
+  const navigate = useNavigate();
+
   return (
     <Grid xs={3}>
       <Card sx={{ display: 'flex', border: "1px solid #76ff03" }}>
@@ -29,15 +45,7 @@ function CharacterItem({
             </Typography>
           </Tooltip>
           <Box textAlign="center" marginTop="20px" >
-          {status === "Alive" ? (
-            <Chip color="success" label={status} />
-          ) : null}
-          {status === "Dead" ? (
-            <Chip color="error" label={status} />
-          ) : null}
-          {status === "unknown" ? (
-            <Chip color="warning" label={status} />
-          ) : null}
+            <Chip onClick={() => {navigate("/prueba")}} color={colors[status]} label={status} />
           </Box>
           <Typography textAlign="center" marginTop="20px" sx={{color: "white"}}>
               {species}
