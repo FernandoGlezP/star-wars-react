@@ -67,12 +67,13 @@ function Characters() {
         alignItems="baseline"
       >
         {prevUrl ? (
-          <Button onClick={onPrev} variant="outlined">
+          <Button color="secondary" onClick={onPrev} variant="outlined">
             Previous
           </Button>
         ) : null}
         {nextUrl ? (
           <Button
+            color="secondary"
             sx={{ margin: "1rem 0 1rem auto"}}
             onClick={onNext}
             variant="outlined"

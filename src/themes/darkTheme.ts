@@ -7,6 +7,9 @@ const darkTheme = createTheme({
     primary: {
       main: colors.primary
     },
+    secondary: {
+      main: colors.secondary
+    }
   },
 });
 
