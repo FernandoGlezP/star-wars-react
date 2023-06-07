@@ -40,26 +40,22 @@ function Character() {
     return <Box display="flex" alignItems="center" justifyContent="center" height="100vh"><img src="https://pngimg.com/uploads/rick_morty/rick_morty_PNG10.png"/></Box>
   }
   return (
-      <Card sx={{ width: 600, border: "1px solid aqua", margin: "0 auto", marginTop: "200px" }} >
+      <Card sx={{display: "flex",width: 800, border: "1px solid aqua", margin: "0 auto", marginTop: "200px" }} >
         <CardMedia
-          sx={{ height: 400 }}
+          component="div"
+          sx={{ height: 500, width: 400 }}
           image={data.image}
           title={data.name}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+        <CardContent sx={{justifyContent: "center", alignItems: "center", maxWidth: 400}}>
+          <Typography component="h1" variant="h1">
             {data.name}
-            
           </Typography>
           <Typography>
-            Especie
-            {data.name}
-            {data.species}
-            {data.status}
-            
+            Especie: <span>{data.species}</span>
           </Typography>
           <Typography>
-            Estatus
+            Estatus: <span>{data.status}</span>
           </Typography>
         </CardContent>
       </Card>
