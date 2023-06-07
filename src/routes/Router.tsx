@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Prueba from "../pages/prueba"
+import Character from "../pages/character"
 import Characters from "../pages/characters"
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Prueba/>} path="/prueba"/>
+        <Route element={<Character/>} path="/character/:id"/>
         <Route element={<Characters/>} path="/"/>
       </Routes>
     </BrowserRouter>

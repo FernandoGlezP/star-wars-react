@@ -23,6 +23,7 @@ const chipColors: Colors = {
 };
 
 function CharacterItem({
+  id,
   image,
   name,
   species,
@@ -40,10 +41,11 @@ function CharacterItem({
           transition: "0.2s",
           "&:hover": {
             transform: "scale(1.05)",
+            border: `1px solid ${colors.secondary}`
           },
         }}
         onClick={() => {
-          navigate("/prueba");
+          navigate(`/character/${id}`);
         }}
       >
         <CardContent sx={{ width: "50%" }}>
