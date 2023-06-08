@@ -11,6 +11,9 @@ const darkTheme = createTheme({
       main: colors.secondary
     }
   },
+  typography: {
+    fontFamily: "LittleMoment"
+  }
 });
 
 export default darkTheme;

@@ -59,6 +59,7 @@ function CharacterItem({
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 maxWidth: "100px",
+                fontSize: "13px"
               }}
             >
               {name}
@@ -77,6 +78,7 @@ function CharacterItem({
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 maxWidth: "100px",
+                fontSize: "13px"
               }}
             >
               {species}

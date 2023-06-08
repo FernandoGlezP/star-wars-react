@@ -1,9 +1,10 @@
 import type Character from "../interfaces/character";
 import CharacterList from "../components/pages/characters/CharacterList";
 import { useEffect, useState } from "react";
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import PageLayout from "../components/layouts/PageLayout";
 
 type TURL = string | null;
 
@@ -59,35 +60,37 @@ function Characters() {
   }
 
   return (
-    <Container>
-      <CharacterList characters={characters} />
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="baseline"
-      >
-        {prevUrl ? (
-          <Button color="secondary" onClick={onPrev} variant="outlined">
-            Previous
-          </Button>
-        ) : null}
-        {nextUrl ? (
-          <Button
-            color="secondary"
-            sx={{ margin: "1rem 0 1rem auto"}}
-            onClick={onNext}
-            variant="outlined"
-          >
-            Next
-          </Button>
-        ) : null}
-      </Stack>
+    <PageLayout>
+      <Container>
+        <CharacterList characters={characters} />
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="baseline"
+        >
+          {prevUrl ? (
+            <Button color="secondary" onClick={onPrev} variant="outlined">
+              Previous
+            </Button>
+          ) : null}
+          {nextUrl ? (
+            <Button
+              color="secondary"
+              sx={{ margin: "1rem 0 1rem auto" }}
+              onClick={onNext}
+              variant="outlined"
+            >
+              Next
+            </Button>
+          ) : null}
+        </Stack>
 
-      {/* <Grid container>
+        {/* <Grid container>
           <Grid xs={1}>{prevUrl ? <Button onClick={onPrev} variant="outlined" fullWidth>Previous</Button> : null}</Grid>
           <Grid xs={1} xsOffset={10}>{nextUrl ? <Button onClick={onNext} variant="outlined" sx={{marginLeft: 'auto'}} fullWidth>Next</Button>: null}</Grid>
       </Grid> */}
-    </Container>
+      </Container>
+    </PageLayout>
   );
 }
 
