@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PageLayout from "../components/layouts/PageLayout";
 import Loader from "../components/shared/Loader";
-import { EightKPlusRounded } from "@mui/icons-material";
+//import { EightKPlusRounded } from "@mui/icons-material";
 
 function Character() {
   const [loading, setLoading] = useState(true);

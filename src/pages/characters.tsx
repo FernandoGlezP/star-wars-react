@@ -1,7 +1,8 @@
 import type Character from "../interfaces/character";
 import CharacterList from "../components/pages/characters/CharacterList";
 import { useEffect, useState } from "react";
-import { Box, Container } from "@mui/material";
+// import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import PageLayout from "../components/layouts/PageLayout";
