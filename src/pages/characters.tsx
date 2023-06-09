@@ -5,6 +5,7 @@ import { Box, Container } from "@mui/material";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import PageLayout from "../components/layouts/PageLayout";
+import Loader from "../components/shared/Loader";
 
 type TURL = string | null;
 
@@ -56,7 +57,9 @@ function Characters() {
   };
 
   if (isLoading) {
-    return <span>LOADING...</span>;
+    return (
+      <Loader/>
+    )
   }
 
   return (

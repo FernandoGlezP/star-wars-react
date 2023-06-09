@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PageLayout from "../components/layouts/PageLayout";
+import Loader from "../components/shared/Loader";
+import { EightKPlusRounded } from "@mui/icons-material";
 
 function Character() {
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,9 @@ function Character() {
     species: "",
     status: "",
     image: "",
+    episodes: [],
   });
+  const [episodes, setEpisodes] = useState<string[]>([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -24,13 +28,14 @@ function Character() {
       setLoading(true);
       try {
         const response = await fetch(url);
-        const { error, name, species, status, image } = await response.json();
+        const { error, name, species, status, image, episode } =
+          await response.json();
         if (error) {
           setError(error);
           setLoading(false);
           return;
         }
-        setData({ name, species, status, image });
+        setData({ name, species, status, image, episodes: episode });
       } catch (error) {
         setError("Ha ocurrido un error en la aplicación");
       }
@@ -39,17 +44,24 @@ function Character() {
     getCharacter();
   }, [id]);
 
+
+  useEffect(() => {
+    if (data.episodes.length) {
+      Promise.all(
+        data.episodes.map((episode) =>
+          fetch(episode)
+            .then((response) => response.json())
+            .then((obj) => `${obj.episode}: ${obj.name}`)
+        )
+      ).then((episodesList) => {
+        setEpisodes(episodesList);
+      });
+    }
+  }, [data]);
+
+
   if (loading) {
-    return (
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        height="100vh"
-      >
-        <img src="https://media.tenor.com/BgR83Df82t0AAAAi/portal-rick-and-morty.gif" />
-      </Box>
-    );
+    return <Loader />;
   }
   if (error) {
     return (
@@ -76,10 +88,10 @@ function Character() {
       <Card
         sx={{
           display: "flex",
+          flexDirection: "column",
           width: 800,
           border: "1px solid aqua",
           margin: "0 auto",
-          marginTop: "200px",
         }}
       >
         <CardMedia
@@ -100,6 +112,13 @@ function Character() {
           <Typography>
             Estatus: <span>{data.status}</span>
           </Typography>
+          {!!episodes.length && (
+            <ul>
+              {episodes.map((episode) => (
+                <li key={episode}>{episode}</li>
+              ))}
+            </ul>
+          )}
         </CardContent>
       </Card>
     </PageLayout>

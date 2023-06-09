@@ -39,6 +39,7 @@ function CharacterItem({
           border: `1px solid ${colors.primary}`,
           cursor: "pointer",
           transition: "0.2s",
+          backgroundColor: "rgba(50,50,50, 0.1)",
           "&:hover": {
             transform: "scale(1.05)",
             border: `1px solid ${colors.secondary}`
