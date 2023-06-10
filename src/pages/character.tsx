@@ -1,13 +1,23 @@
 import { Box } from "@mui/material";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PageLayout from "../components/layouts/PageLayout";
 import Loader from "../components/shared/Loader";
-//import { EightKPlusRounded } from "@mui/icons-material";
+import Chip from "@mui/material/Chip";
+
+type Colors = {
+  Alive: "success" | "error" | "warning" | "default" | "primary";
+  Dead: "success" | "error" | "warning" | "default" | "primary";
+  unknown: "success" | "error" | "warning" | "default" | "primary";
+};
+
+const chipColors: Colors = {
+  Alive: "success",
+  Dead: "error",
+  unknown: "warning",
+};
 
 function Character() {
   const [loading, setLoading] = useState(true);
@@ -87,40 +97,44 @@ function Character() {
     <PageLayout>
       <Card
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: 800,
           border: "1px solid aqua",
           margin: "0 auto",
+          width: "20%",
         }}
       >
-        <CardMedia
-          component="div"
-          sx={{ height: 500, width: 400 }}
-          image={data.image}
-          title={data.name}
-        />
-        <CardContent
-          sx={{ justifyContent: "center", alignItems: "center", maxWidth: 400 }}
+        <Box 
+          component="img"
+          src={data.image}
+          sx={{
+            width: "100%",
+            height: "100%"
+          }}
         >
-          <Typography component="h1" variant="h1">
-            {data.name}
-          </Typography>
-          <Typography>
-            Especie: <span>{data.species}</span>
-          </Typography>
-          <Typography>
-            Estatus: <span>{data.status}</span>
-          </Typography>
-          {!!episodes.length && (
-            <ul>
-              {episodes.map((episode) => (
-                <li key={episode}>{episode}</li>
-              ))}
-            </ul>
-          )}
-        </CardContent>
+        </Box>
       </Card>
+      <Box component="div" sx={{
+        border: "1px solid aqua",
+        margin: "0 auto",
+        width: "30%",
+        marginTop: "20px"
+      }}
+      >
+        <Typography component="h1" variant="h2" textAlign="center">{data.name}</Typography>
+        <Typography>{data.species}</Typography>
+
+        <Box textAlign="center" marginTop="20px">
+          <Chip color={chipColors[data.status]} label={data.status} />
+        </Box>
+
+        <Typography>Episodes: </Typography>
+        {!!episodes.length && (
+          <ul>
+            {episodes.map((episode) => (
+              <li key={episode}>{episode}</li>
+            ))}
+          </ul>
+        )}
+      </Box>
     </PageLayout>
   );
 }
