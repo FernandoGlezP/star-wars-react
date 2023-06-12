@@ -32,7 +32,7 @@ function CharacterItem({
   const navigate = useNavigate();
 
   return (
-    <Grid xs={3}>
+    <Grid xs={12} md={6} lg={3}  >
       <Card
         sx={{
           display: "flex",
