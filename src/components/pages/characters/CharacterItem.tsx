@@ -87,15 +87,15 @@ function CharacterItem({
           </Tooltip>
         </CardContent>
         <CardMedia
-          component="div"
-          sx={{
-            backgroundImage: `url(${image})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            width: "50%",
-            height: "auto",
-          }}
-        />
+        component="div"
+        sx={{
+          backgroundImage: `url(${image})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          width: "100%",
+          height: "auto",
+        }}>
+        </CardMedia>
       </Card>
     </Grid>
   );
