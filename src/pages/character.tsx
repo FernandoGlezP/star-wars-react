@@ -8,6 +8,7 @@ import Chip from "@mui/material/Chip";
 import Grid from "@mui/material/Unstable_Grid2";
 import { colors } from "../constants/themes";
 import Character from "../interfaces/character";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 type Colors = {
   Alive: "success" | "error" | "warning" | "default" | "primary";
@@ -121,8 +122,9 @@ function CharacterDetail() {
               backgroundColor: "rgba(50,50,50, 0.1)",
             }}
           >
-            <Typography component="h1" variant="h2" textAlign="center">
+            <Typography component="h1" variant="h2" textAlign="center" sx={{display: "flex", alignItems: "baseline"}}>
               {data.name}
+              <StarBorderIcon sx={{ fontSize: 40 }}/>
             </Typography>
             <Typography>{data.species}</Typography>
 
